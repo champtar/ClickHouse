@@ -681,7 +681,7 @@ void DataTypeWithDictionary::deserializeBinaryBulkWithMultipleStreams(
 
             index_type.deserialize(*indexes_stream);
 
-            if (index_type.need_global_dictionary && (!global_dictionary || index_type.need_update_dictionary))
+            if (index_type.need_global_dictionary && (!global_dictionary || index_type.need_update_dictionary || !settings.continuous_reading))
                 readDictionary();
 
             if (state_with_dictionary->index_type.has_additional_keys)
